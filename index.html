@@ -1,8 +1,490 @@
+="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https:/<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello Kitty - Welcome World!</title>
+    
+    <!-- Using Google Fonts for clean typography -->
+    <link rel="preconnect" href/fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Variables for easy color theme management */
+        :root {
+            --bg-gradient-1: #ffd1dc;
+            --bg-gradient-2: #ffe6fa;
+            --bg-gradient-3: #e8dff5;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --pink-primary: #ff6b8b;
+            --pink-secondary: #ff8da1;
+            --pink-shadow: rgba(255, 107, 139, 0.35);
+            --text-color: #5c4350;
+            --yellow-accent: #ffd166;
+        }
 
+        /* Basic page setup */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
+        body {
+            font-family: 'Fredoka', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, var(--bg-gradient-1), var(--bg-gradient-2), var(--bg-gradient-3));
+            background-size: 400% 400%;
+            animation: gradientShift 12s ease infinite;
+            overflow: hidden;
+            position: relative;
+            color: var(--text-color);
+        }
 
-Hello Kitty Welcome Animation
+        /* Animated gradient background */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
+        /* Background Particle Containers */
+        .particles-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
 
-    <meta charset="UTF-8">    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>Hello Kitty - Welcome World!</title>        <!-- Using Google Fonts for clean typography -->    <link rel="preconnect" href="https://fonts.googleapis.com">    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">        <style>        /* CSS Variables for easy color theme management */        :root {            --bg-gradient-1: #ffd1dc;            --bg-gradient-2: #ffe6fa;            --bg-gradient-3: #e8dff5;            --card-bg: rgba(255, 255, 255, 0.85);            --pink-primary: #ff6b8b;            --pink-secondary: #ff8da1;            --pink-shadow: rgba(255, 107, 139, 0.35);            --text-color: #5c4350;            --yellow-accent: #ffd166;        }        /* Basic page setup */        * {            box-sizing: border-box;<head><html lang="en"><!DOCTYPE html>
+        /* Floating Hearts Styling */
+        .floating-heart {
+            position: absolute;
+            bottom: -50px;
+            color: var(--pink-primary);
+            opacity: 0.6;
+            animation: floatUp linear infinite;
+            user-select: none;
+        }
 
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(0.8);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-110vh) rotate(360deg) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* Main Glassmorphism Card Container */
+        .container {
+            position: relative;
+            z-index: 10;
+            width: 90%;
+            max-width: 450px;
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 3px solid rgba(255, 255, 255, 0.8);
+            border-radius: 30px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 20px 40px var(--pink-shadow),
+                        0 0 0 10px rgba(255, 255, 255, 0.4);
+            animation: cardAppear 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes cardAppear {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* Interactive Stage for Hello Kitty */
+        .stage {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            margin: 0 auto 20px auto;
+            cursor: pointer;
+        }
+
+        /* Glowing backdrop ring behind Hello Kitty */
+        .glow-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 190px;
+            height: 190px;
+            background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,182,193,0.5) 60%, rgba(255,255,255,0) 100%);
+            border-radius: 50%;
+            filter: drop-shadow(0 0 15px rgba(255, 107, 139, 0.5));
+            animation: pulseGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: translate(-50%, -50%) scale(0.95); opacity: 0.7; }
+            100% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+        }
+
+        /* Hello Kitty Vector Wrapper */
+        .kitty-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            /* Entrance pop-out animation */
+            animation: popOut 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.3s forwards;
+            transform: scale(0);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes popOut {
+            0% { transform: scale(0) rotate(-15deg); }
+            80% { transform: scale(1.1) rotate(5deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        /* Hover animation on Kitty */
+        .stage:hover .kitty-wrapper {
+            transform: scale(1.08) translateY(-5deg);
+        }
+
+        /* Gentle floating animation when idle */
+        .kitty-svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+            animation: gentleBob 3s ease-in-out infinite alternate 1.5s;
+        }
+
+        @keyframes gentleBob {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-8px) rotate(2deg); }
+        }
+
+        /* Wink and wave animation state on click */
+        .kitty-wrapper.waving {
+            animation: waveBounce 0.6s ease-in-out infinite alternate !important;
+        }
+
+        @keyframes waveBounce {
+            0% { transform: scale(1) rotate(-8deg); }
+            100% { transform: scale(1.1) rotate(8deg); }
+        }
+
+        /* Sparkle Effects around Kitty */
+        .sparkle {
+            position: absolute;
+            background-color: var(--yellow-accent);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: sparkleSpin 2s linear infinite;
+        }
+
+        @keyframes sparkleSpin {
+            0% { transform: rotate(0deg) scale(0.5); opacity: 0.3; }
+            50% { transform: rotate(180deg) scale(1.2); opacity: 1; }
+            100% { transform: rotate(360deg) scale(0.5); opacity: 0.3; }
+        }
+
+        /* Greeting Text */
+        .greeting-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--pink-primary);
+            text-shadow: 2px 2px 0px #fff;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .greeting-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            margin-bottom: 24px;
+            line-height: 1.4;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+        }
+
+        /* Interactive Action Button */
+        .action-btn {
+            background: linear-gradient(135deg, var(--pink-primary), var(--pink-secondary));
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            font-size: 1.1rem;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px var(--pink-shadow);
+            transition: all 0.3s ease;
+            outline: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-3deg) scale(1.05);
+            box-shadow: 0 12px 25px var(--pink-shadow);
+            background: linear-gradient(135deg, #ff5277, var(--pink-primary));
+        }
+
+        .action-btn:active {
+            transform: translateY(1deg) scale(0.98);
+        }
+
+        /* Footer Credits */
+        .footer-note {
+            margin-top: 20px;
+            font-size: 0.85rem;
+            opacity: 0.75;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .footer-note a {
+            color: var(--pink-primary);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        /* Burst heart particle effect on click */
+        .click-heart {
+            position: absolute;
+            pointer-events: none;
+            font-size: 20px;
+            animation: burstOut 0.8s ease-out forwards;
+            z-index: 100;
+        }
+
+        @keyframes burstOut {
+            0% {
+                transform: translate(-50%, -50%) scale(0.3);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1.5);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Hearts Particle Layer -->
+    <div class="particles-container" id="particles"></div>
+
+    <!-- Main Card Container -->
+    <div class="container">
+        
+        <!-- Interactive Hello Kitty Stage -->
+        <div class="stage" id="kittyStage" title="Click to interact with Hello Kitty!">
+            <div class="glow-ring"></div>
+            
+            <!-- Sparkles positioned around Hello Kitty -->
+            <div class="sparkle" style="top: 10px; left: 20px; width: 16px; height: 16px; animation-delay: 0s;"></div>
+            <div class="sparkle" style="top: 30px; right: 15px; width: 20px; height: 20px; animation-delay: 0.7s;"></div>
+            <div class="sparkle" style="bottom: 20px; left: 25px; width: 18px; height: 18px; animation-delay: 1.3s;"></div>
+
+            <!-- Hello Kitty Inline Vector Graphic (SVG) -->
+            <div class="kitty-wrapper" id="kittyWrapper">
+                <svg class="kitty-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Body / Dress -->
+                    <path d="M60 145 C 60 120, 140 120, 140 145 L 148 180 C 148 188, 138 190, 100 190 C 62 190, 52 188, 52 180 Z" fill="#FF6B8B" stroke="#333" stroke-width="4.5" stroke-linejoin="round"/>
+                    
+                    <!-- Shirt Sleeves & Arms -->
+                    <ellipse cx="55" cy="150" rx="12" ry="8" fill="#FFF" stroke="#333" stroke-width="4" transform="rotate(-20 55 150)"/>
+                    <ellipse cx="145" cy="150" rx="12" ry="8" fill="#FFF" stroke="#333" stroke-width="4" transform="rotate(20 145 150)"/>
+                    
+                    <!-- Paws -->
+                    <circle cx="48" cy="153" r="8" fill="#FFF" stroke="#333" stroke-width="4"/>
+                    <circle cx="152" cy="153" r="8" fill="#FFF" stroke="#333" stroke-width="4"/>
+
+                    <!-- Head Base -->
+                    <ellipse cx="100" cy="95" rx="72" ry="52" fill="#FFFFFF" stroke="#333333" stroke-width="5"/>
+
+                    <!-- Left Ear -->
+                    <path d="M 40 62 Q 30 20 62 42 Z" fill="#FFFFFF" stroke="#333333" stroke-width="5" stroke-linejoin="round"/>
+                    
+                    <!-- Right Ear -->
+                    <path d="M 160 62 Q 170 20 138 42 Z" fill="#FFFFFF" stroke="#333333" stroke-width="5" stroke-linejoin="round"/>
+
+                    <!-- Signature Red/Pink Bow -->
+                    <g id="bow">
+                        <!-- Left loop -->
+                        <ellipse cx="138" cy="45" rx="16" ry="12" fill="#FF477E" stroke="#333" stroke-width="4" transform="rotate(-15 138 45)"/>
+                        <!-- Right loop -->
+                        <ellipse cx="168" cy="52" rx="16" ry="12" fill="#FF477E" stroke="#333" stroke-width="4" transform="rotate(25 168 52)"/>
+                        <!-- Center knot -->
+                        <circle cx="152" cy="48" r="9" fill="#FF2A6d" stroke="#333" stroke-width="4"/>
+                    </g>
+
+                    <!-- Eyes -->
+                    <ellipse cx="68" cy="98" rx="6.5" ry="9" fill="#333333"/>
+                    <ellipse cx="132" cy="98" rx="6.5" ry="9" fill="#333333" id="rightEye"/>
+
+                    <!-- Yellow Nose -->
+                    <ellipse cx="100" cy="106" rx="7" ry="5" fill="#FFD166" stroke="#333333" stroke-width="3"/>
+
+                    <!-- Left Whiskers -->
+                    <line x1="22" y1="92" x2="48" y2="95" stroke="#333333" stroke-width="4" stroke-linecap="round"/>
+                    <line x1="18" y1="104" x2="46" y2="104" stroke="#333333" stroke-width="4" stroke-linecap="round"/>
+                    <line x1="22" y1="116" x2="48" y2="112" stroke="#333333" stroke-width="4" stroke-linecap="round"/>
+
+                    <!-- Right Whiskers -->
+                    <line x1="152" y1="95" x2="178" y2="92" stroke="#333333" stroke-width="4" stroke-linecap="round"/>
+                    <line x1="154" y1="104" x2="182" y2="104" stroke="#333333" stroke-width="4" stroke-linecap="round"/>
+                    <line x1="152" y1="112" x2="178" y2="116" stroke="#333333" stroke-width="4" stroke-linecap="round"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Welcoming Text Content -->
+        <h1 class="greeting-title" id="titleText">Hello, World! ✨</h1>
+        <p class="greeting-subtitle" id="messageText">Welcome to my very first GitHub repository! Hello Kitty is here to wish you a wonderful day.</p>
+
+        <!-- Interactive Button -->
+        <button class="action-btn" id="helloBtn">
+            <span>Say Hello!</span> 💖
+        </button>
+
+        <!-- Footer link -->
+        <div class="footer-note">
+            Built with 🎀 for my first GitHub project
+        </div>
+    </div>
+
+    <script>
+        /* ========================================================
+           1. FLOATING BACKGROUND HEARTS GENERATOR
+           ======================================================== */
+        const particlesContainer = id('particles');
+        const heartSymbols = ['🌸', '✨', '💖', '🎀', '💕'];
+
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            
+            // Pick a random heart/flower symbol
+            heart.innerText = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+            
+            // Random horizontal position across the viewport
+            heart.style.left = Math.random() * 100 + 'vw';
+            
+            // Random size variation
+            heart.style.fontSize = (Math.random() * 18 + 14) + 'px';
+            
+            // Random duration for smooth floating speed
+            const duration = Math.random() * 6 + 6;
+            heart.style.animationDuration = duration + 's';
+
+            particlesContainer.appendChild(heart);
+
+            // Clean up heart element after animation completes
+            setTimeout(() => {
+                heart.remove();
+            }, duration * 1000);
+        }
+
+        // Spawn a new heart every 400 milliseconds
+        setInterval(createFloatingHeart, 400);
+
+        /* ========================================================
+           2. INTERACTIVE BUTTON & HELLO KITTY ANIMATIONS
+           ======================================================== */
+        const kittyStage = id('kittyStage');
+        const kittyWrapper = id('kittyWrapper');
+        const helloBtn = id('helloBtn');
+        const titleText = id('titleText');
+        const messageText = id('messageText');
+
+        const sweetMessages = [
+            { title: "You're Awesome! 🌟", msg: "Keep coding and creating amazing things every day!" },
+            { title: "Super Cute Code! 🎀", msg: "Every great developer started with a single Hello World." },
+            { title: "Sending Love! 💖", msg: "Thanks for visiting my GitHub project!" },
+            { title: "Stay Creative! 🎨", msg: "Dream big, learn fast, and build awesome apps!" }
+        ];
+
+        let messageIndex = 0;
+
+        // Function to trigger interaction effects
+        function triggerInteraction(e) {
+            // 1. Play Wave/Bounce Animation on Hello Kitty
+            kittyWrapper.classList.add('waving');
+            setTimeout(() => {
+                kittyWrapper.classList.remove('waving');
+            }, 1200);
+
+            // 2. Cycle through sweet messages
+            messageIndex = (messageIndex + 1) % sweetMessages.length;
+            titleText.innerText = sweetMessages[messageIndex].title;
+            messageText.innerText = sweetMessages[messageIndex].msg;
+
+            // 3. Create burst particle effect at cursor/click coordinates
+            const rect = kittyStage.getBoundingClientRect();
+            const posX = e ? e.clientX : rect.left + rect.width / 2;
+            const posY = e ? e.clientY : rect.top + rect.height / 2;
+            
+            createHeartBurst(posX, posY);
+        }
+
+        // Click event listeners
+        helloBtn.addEventListener('click', triggerInteraction);
+        kittyStage.addEventListener('click', triggerInteraction);
+
+        /* ========================================================
+           3. BURST PARTICLES EFFECT ON CLICK
+           ======================================================== */
+        function createHeartBurst(x, y) {
+            const count = 12; // Number of particles in burst
+            
+            for (let i = 0; i < count; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'click-heart';
+                particle.innerText = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                particle.style.left = x + 'px';
+                particle.style.top = y + 'px';
+
+                // Calculate random trajectory directions
+                const angle = (i / count) * 360;
+                const distance = Math.random() * 80 + 50;
+                const dx = Math.cos(angle * Math.PI / 180) * distance + 'px';
+                const dy = Math.sin(angle * Math.PI / 180) * distance + 'px';
+
+                particle.style.setProperty('--dx', dx);
+                particle.style.setProperty('--dy', dy);
+
+                document.body.appendChild(particle);
+
+                // Remove after animation completes
+                setTimeout(() => {
+                    particle.remove();
+                }, 800);
+            }
+        }
+
+        // Utility Helper Function
+        function id(name) {
+            return document.getElementById(name);
+        }
+    </script>
+</body>
+</html>
